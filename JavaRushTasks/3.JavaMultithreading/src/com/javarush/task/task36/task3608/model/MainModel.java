@@ -1,6 +1,8 @@
 package com.javarush.task.task36.task3608.model;
 
 import com.javarush.task.task36.task3608.bean.User;
+import com.javarush.task.task36.task3608.model.service.UserService;
+import com.javarush.task.task36.task3608.model.service.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -8,8 +10,9 @@ import java.util.List;
 /**
  * Created by Ben on 2017-08-29.
  */
-public class FakeModel implements Model {
+public class MainModel implements Model {
     private ModelData modelData = new ModelData();
+    private UserService userService = new UserServiceImpl();
 
     @Override
     public ModelData getModelData() {
@@ -18,24 +21,26 @@ public class FakeModel implements Model {
 
     @Override
     public void loadUsers() {
-        List<User> users = new ArrayList<>();
-        users.add(new User("A", 1, 1));
-        users.add(new User("B", 2, 1));
+        List<User> users = userService.getUsersBetweenLevels(1, 100);
+        modelData.setDisplayDeletedUserList(false);
         modelData.setUsers(users);
     }
 
     @Override
     public void loadDeletedUsers() {
-        throw new UnsupportedOperationException();
+        List<User> users = userService.getAllDeletedUsers();
+        modelData.setDisplayDeletedUserList(true);
+        modelData.setUsers(users);
     }
 
     @Override
     public void loadUserById(long userId) {
-        throw new UnsupportedOperationException();
+        User user = userService.getUsersById(userId);
+        modelData.setActiveUser(user);
     }
 
     @Override
     public void deleteUserById(long id) {
-        throw new UnsupportedOperationException();
+
     }
 }
