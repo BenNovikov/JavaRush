@@ -38,4 +38,6 @@ public class FakeModel implements Model {
     public void deleteUserById(long id) {
         throw new UnsupportedOperationException();
     }
+
+
 }

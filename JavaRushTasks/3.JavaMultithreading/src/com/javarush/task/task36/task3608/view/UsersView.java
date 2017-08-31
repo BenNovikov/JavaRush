@@ -34,7 +34,4 @@ public class UsersView implements View {
         controller.onOpenUserEditForm(id);
     }
 
-    public void fireEventUserDeleted(long id) {
-        controller.onUserDelete(id);
-    }
 }
