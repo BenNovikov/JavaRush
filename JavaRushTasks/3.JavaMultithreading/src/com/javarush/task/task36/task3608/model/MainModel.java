@@ -50,4 +50,10 @@ public class MainModel implements Model {
         modelData.setActiveUser(user);
         loadUsers();
     }
+
+    @Override
+    public void changeUserData(String name, long id, int level) {
+        userService.createOrUpdateUser(name, id, level);
+        loadUsers();
+    }
 }
