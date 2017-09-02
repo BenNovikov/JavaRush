@@ -1,7 +1,9 @@
 package com.javarush.task.task25.task2503;
 
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public enum Column implements Columnable {
     Customer("Customer"),
@@ -50,6 +52,13 @@ public enum Column implements Columnable {
      */
     public static List<Column> getVisibleColumns() {
         List<Column> result = new LinkedList<>();
+        List<Integer> realOrderList = Arrays.stream(realOrder).boxed().collect(Collectors.toList());
+        int columnAtOrderedIndex;
+        for (int i = 0; i < realOrder.length; i++) {
+            if ((columnAtOrderedIndex = realOrderList.indexOf(i)) != -1) {
+                result.add(Column.values()[columnAtOrderedIndex]);
+            }
+        }
 
         return result;
     }
@@ -62,11 +71,11 @@ public enum Column implements Columnable {
 
     @Override
     public boolean isShown() {
-        return true;
+        return realOrder[this.ordinal()] >= 0;
     }
 
     @Override
     public void hide() {
-
+        realOrder[this.ordinal()] = -1;
     }
 }
