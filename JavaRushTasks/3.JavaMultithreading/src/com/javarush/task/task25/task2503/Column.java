@@ -71,7 +71,7 @@ public enum Column implements Columnable {
 
     @Override
     public boolean isShown() {
-        return realOrder[this.ordinal()] >= 0;
+        return realOrder[this.ordinal()] != -1;
     }
 
     @Override
