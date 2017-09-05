@@ -27,7 +27,9 @@ public class Solution extends Thread {
         catch (IOException e) {
 
         }
-
+        finally {
+            super.interrupt();
+        }
     }
 
     public void run() {
@@ -40,16 +42,12 @@ public class Solution extends Thread {
                 } else {
                     if (count > 0) {
                         //process buffer here
+                        ++count;
                     }
                 }
             }
         }
-        catch (IOException ignored) {
-
-        }
-        finally {
-            super.interrupt();
-        }
+        catch (IOException ignored) {}
     }
 
     public static void main(String[] args) {
