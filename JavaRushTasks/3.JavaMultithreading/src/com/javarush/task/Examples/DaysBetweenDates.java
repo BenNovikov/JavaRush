@@ -1,4 +1,4 @@
-package com.javarush.task;
+package com.javarush.task.Examples;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
