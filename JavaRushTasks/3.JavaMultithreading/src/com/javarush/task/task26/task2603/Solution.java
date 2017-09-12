@@ -22,10 +22,10 @@ public class Solution {
 
         @Override
         public int compare(T o1, T o2) {
-            Optional<Comparator<T>> c = Arrays.stream(comparators)
+            Optional<Comparator<T>> optional = Arrays.stream(comparators)
                     .filter(comparator -> (compare(o1, o2) != 0))
-                    .reduce();
-            return c.isPresent() ? c.get().compare(o1, o2) : 0;
+                    .findFirst();
+            return optional.isPresent() ? optional.get().compare(o1, o2) : 0;
         }
 
         @Override
