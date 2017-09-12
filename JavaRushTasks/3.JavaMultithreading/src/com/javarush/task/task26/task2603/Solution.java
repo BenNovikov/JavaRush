@@ -26,11 +26,16 @@ public class Solution {
                     .filter(comparator -> (compare(o1, o2) != 0))
                     .findFirst();
             return optional.isPresent() ? optional.get().compare(o1, o2) : 0;
-        }
 
-        @Override
-        public boolean equals(Object obj) {
-            return false;
+            //the same
+//            int result = 0;
+//            for (Comparator comparator : comparators) {
+//                result = comparator.compare(o1, o2);
+//                if (result != 0) {
+//                    break;
+//                }
+//            }
+//            return result;
         }
     }
 }
