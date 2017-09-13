@@ -22,20 +22,19 @@ public class Solution {
 
         @Override
         public int compare(T o1, T o2) {
-            Optional<Comparator<T>> optional = Arrays.stream(comparators)
-                    .filter(comparator -> (compare(o1, o2) != 0))
-                    .findFirst();
-            return optional.isPresent() ? optional.get().compare(o1, o2) : 0;
-
-            //the same
-//            int result = 0;
-//            for (Comparator comparator : comparators) {
-//                result = comparator.compare(o1, o2);
-//                if (result != 0) {
-//                    break;
-//                }
-//            }
-//            return result;
+            int result = 0;
+            for (Comparator comparator : comparators) {
+                result = comparator.compare(o1, o2);
+                if (result != 0) {
+                    break;
+                }
+            }
+            return result;
+            //the same with lambdas
+//            Optional<Comparator<T>> optional = Arrays.stream(comparators)
+//                    .filter(comparator -> (compare(o1, o2) != 0))
+//                    .findFirst();
+//            return optional.isPresent() ? optional.get().compare(o1, o2) : 0;
         }
     }
 }
