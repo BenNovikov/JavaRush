@@ -19,6 +19,7 @@ public class Producer implements Runnable {
             while (true) {
                 map.put(Integer.toString(i), "Some text for " + i);
                 Thread.sleep(500);
+                i++;
             }
         }
         catch (Exception e) {
