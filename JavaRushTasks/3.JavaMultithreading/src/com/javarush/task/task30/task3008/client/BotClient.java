@@ -78,7 +78,7 @@ public class BotClient extends Client {
                     default:
                         return;
                 }
-                
+
                 String messageToSend = "Информация для " + messageData[0] + ": " + dateFormat.format(cal.getTime());
                 sendTextMessage(messageToSend);
             }
