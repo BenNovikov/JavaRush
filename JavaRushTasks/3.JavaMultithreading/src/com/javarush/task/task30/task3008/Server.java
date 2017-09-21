@@ -1,7 +1,5 @@
 package com.javarush.task.task30.task3008;
 
-import com.javarush.task.task29.task2909.user.Address;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -19,12 +17,6 @@ public class Server {
         ConsoleHelper.writeMessage("Input server port number: ");
         try (ServerSocket serverSocket = new ServerSocket(ConsoleHelper.readInt())) {
             ConsoleHelper.writeMessage("Server started");
-
-            //test
-            ConsoleHelper.writeMessage(
-                    "Address: " + serverSocket.getInetAddress() +
-                    " Port: " + serverSocket.getLocalPort());
-
             while (true) {
                 new Handler(serverSocket.accept()).start();
             }

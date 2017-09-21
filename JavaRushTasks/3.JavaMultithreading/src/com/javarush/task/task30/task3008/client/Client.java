@@ -21,17 +21,14 @@ public class Client extends Thread {
     }
 
     protected String getServerAddress() {
-        ConsoleHelper.writeMessage("Input server address: ");
         return ConsoleHelper.readString();
     }
 
     protected int getServerPort() {
-        ConsoleHelper.writeMessage("Input server port: ");
         return ConsoleHelper.readInt();
     }
 
     protected String getUserName() {
-        ConsoleHelper.writeMessage("Input user name: ");
         return ConsoleHelper.readString();
     }
 
@@ -76,7 +73,7 @@ public class Client extends Thread {
             while (clientConnected) {
                 ConsoleHelper.writeMessage("Соединение установлено. Для выхода наберите команду ‘exit’.");
                 String inputLine = ConsoleHelper.readString();
-                if (inputLine.equals("exit")) break;
+                if (inputLine == "exit") break;
                 if (shouldSendTextFromConsole()) sendTextMessage(inputLine);
             }
         }

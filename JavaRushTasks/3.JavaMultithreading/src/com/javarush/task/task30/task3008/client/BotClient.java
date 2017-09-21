@@ -36,9 +36,7 @@ public class BotClient extends Client {
     public class BotSocketThread extends SocketThread {
         @Override
         protected void clientMainLoop() throws IOException, ClassNotFoundException {
-            sendTextMessage(
-                    "Привет чатику. Я бот. Понимаю команды: дата, день, месяц, год, время, час, минуты, секунды."
-            );
+            sendTextMessage("Привет чатику. Я бот. Понимаю команды: дата, день, месяц, год, время, час, минуты, секунды.");
             super.clientMainLoop();
         }
 
@@ -78,7 +76,6 @@ public class BotClient extends Client {
                     default:
                         return;
                 }
-
                 String messageToSend = "Информация для " + messageData[0] + ": " + dateFormat.format(cal.getTime());
                 sendTextMessage(messageToSend);
             }
