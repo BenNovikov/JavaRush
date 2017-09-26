@@ -13,9 +13,14 @@ public class MailServer implements Runnable {
         //сделайте что-то тут - do something here
         synchronized (mail) {
             String name = Thread.currentThread().getName();
-            long afterTime = System.currentTimeMillis();
-            while (mail )
-            System.out.format("%s MailServer has got: [%s] in %d ms after start", name, mail.getText(), (afterTime - beforeTime));
+            try {
+                mail.wait();
+                long afterTime = System.currentTimeMillis();
+                System.out.format("%s MailServer has got: [%s] in %d ms after start", name, mail.getText(), (afterTime - beforeTime));
+            }
+            catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

@@ -5,7 +5,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class ProducerTask implements Runnable {
     private TransferObject transferObject;
     protected volatile boolean stopped;
-    static volatile AtomicInteger i = new AtomicInteger(0);
+    static volatile AtomicInteger i = new AtomicInteger(1);
 
     public ProducerTask(TransferObject transferObject) {
         this.transferObject = transferObject;
@@ -14,7 +14,9 @@ public class ProducerTask implements Runnable {
 
     public void run() {
         while (!stopped) {
-            transferObject.put(i.incrementAndGet());
+            synchronized (transferObject) {
+                transferObject.put(i.getAndIncrement());
+            }
         }
     }
 
