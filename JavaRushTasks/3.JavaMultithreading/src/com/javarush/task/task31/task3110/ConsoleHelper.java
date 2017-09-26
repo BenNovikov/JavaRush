@@ -1,4 +1,4 @@
-package com.javarush.task.task25.task2503;
+package com.javarush.task.task31.task3110;
 
 import java.io.BufferedReader;
 import java.io.IOException;
