@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 
 public abstract class ZipCommand implements Command {
     public ZipFileManager getZipFileManager() throws Exception {
-        ConsoleHelper.writeMessage("Enter full path for the archive file: ");
+        ConsoleHelper.writeMessage("Enter the full path for the archive file: ");
         String pathString = ConsoleHelper.readString();
         return new ZipFileManager(Paths.get(pathString));
     }
