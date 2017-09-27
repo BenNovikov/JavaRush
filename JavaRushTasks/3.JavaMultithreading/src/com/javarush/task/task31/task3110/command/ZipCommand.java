@@ -3,9 +3,13 @@ package com.javarush.task.task31.task3110.command;
 import com.javarush.task.task31.task3110.ConsoleHelper;
 import com.javarush.task.task31.task3110.ZipFileManager;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 public abstract class ZipCommand implements Command {
     public ZipFileManager getZipFileManager() throws Exception {
-
-        return null;
+        ConsoleHelper.writeMessage("Enter full path for the archive file: ");
+        String pathString = ConsoleHelper.readString();
+        return new ZipFileManager(Paths.get(pathString));
     }
 }
