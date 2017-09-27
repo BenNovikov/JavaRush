@@ -1,23 +1,16 @@
 package com.javarush.task.task31.task3110;
 
-import com.javarush.task.task31.task3110.command.ExitCommand;
-import com.javarush.task.task31.task3110.exception.*;
+import com.javarush.task.task31.task3110.exception.WrongZipFileException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
 
-/*
-helps a lot:
-http://www.thecoderscorner.com/team-blog/java-and-jvm/63-writing-a-zip-file-in-java-using-zipoutputstream/
-*/
-
 public class Archiver {
-    private static final String helperSource = "D:/Workshop/Java/Javarush/source.txt";
-    private static final String helperTarget = "D:/Workshop/Java/Javarush/source.zip";
-
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+//        final String helperSource = "D:/Workshop/Java/Javarush/source.txt";
+//        final String helperTarget = "D:/Workshop/Java/Javarush/source.zip";
 //        String archivePathAndName = "", sourcePathAndName = "";
 //
 //        try (BufferedReader reader = new BufferedReader((new InputStreamReader(System.in)))) {
@@ -43,17 +36,18 @@ public class Archiver {
             try {
                 operation = askOperation();
                 CommandExecutor.execute(operation);
-            }
-            catch (WrongZipFileException e) {
+            } catch (WrongZipFileException e) {
                 ConsoleHelper.writeMessage("Вы не выбрали файл архива или выбрали неверный файл.");
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 ConsoleHelper.writeMessage("Произошла ошибка. Проверьте введенные данные.");
             }
+
         } while (operation != Operation.EXIT);
     }
 
+
     public static Operation askOperation() throws IOException {
+        ConsoleHelper.writeMessage("");
         ConsoleHelper.writeMessage("Выберите операцию:");
         ConsoleHelper.writeMessage(String.format("\t %d - упаковать файлы в архив", Operation.CREATE.ordinal()));
         ConsoleHelper.writeMessage(String.format("\t %d - добавить файл в архив", Operation.ADD.ordinal()));
