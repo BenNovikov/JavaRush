@@ -2,34 +2,12 @@ package com.javarush.task.task31.task3110;
 
 import com.javarush.task.task31.task3110.exception.WrongZipFileException;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Paths;
 
 public class Archiver {
     public static void main(String[] args) throws IOException {
-//        final String helperSource = "D:/Workshop/Java/Javarush/source.txt";
-//        final String helperTarget = "D:/Workshop/Java/Javarush/source.zip";
-//        String archivePathAndName = "", sourcePathAndName = "";
-//
-//        try (BufferedReader reader = new BufferedReader((new InputStreamReader(System.in)))) {
-//            System.out.print("Enter full path and file name of the zip archive: ");
-//            archivePathAndName = reader.readLine();
-//            if (archivePathAndName.equals("")) archivePathAndName = helperTarget;
-//            ZipFileManager manager = new ZipFileManager(Paths.get(archivePathAndName));
-//
-//            System.out.print("Enter full path and file name of the source file: ");
-//            sourcePathAndName = reader.readLine();
-//            if (sourcePathAndName.equals("")) sourcePathAndName = helperSource;
-//            try {
-//                manager.createZip(Paths.get(sourcePathAndName));
-//            }
-//            catch (Exception e) {
-//            }
-//        }
-//        catch (IOException e) {
-//        }
+//        final String helperSource = "D:/Workshop/Java/Javarush/resources/source.txt";
+//        final String helperTarget = "D:/Workshop/Java/Javarush/resources/source.zip";
 
         Operation operation = null;
         do {
@@ -44,7 +22,6 @@ public class Archiver {
 
         } while (operation != Operation.EXIT);
     }
-
 
     public static Operation askOperation() throws IOException {
         ConsoleHelper.writeMessage("");
