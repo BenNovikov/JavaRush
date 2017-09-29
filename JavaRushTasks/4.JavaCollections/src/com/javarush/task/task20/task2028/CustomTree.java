@@ -5,12 +5,6 @@ import java.util.*;
 
 /* 
 Построй дерево(1)
-1. После добавления N элементов в дерево с помощью метода add, метод size должен возвращать N.
-2. После удаления последнего добавленного элемента из дерева с помощью метода remove, метод size
-должен возвращать N-1.
-3. После удаления второго элемента добавленного в дерево, метод size должен
-возвращать N/2 + 1 (для случаев где N > 2 и является степенью двойки), N - размер дерева до удаления.
-4. Метод getParent должен возвращать имя родителя для любого элемента дерева.
 */
 public class CustomTree extends AbstractList implements Cloneable, Serializable {
     Entry<String> root;
@@ -41,6 +35,7 @@ public class CustomTree extends AbstractList implements Cloneable, Serializable 
             if (i > Math.pow(2, result) - 2)
                 result++;
         }
+
         return result - 1;
     }
 
@@ -55,7 +50,7 @@ public class CustomTree extends AbstractList implements Cloneable, Serializable 
             Entry<String> entry = listIterator.next();
 
             if (entry.isAvailableToAddChildren()) {
-                ConsoleHelper.writeMessage(String.format("Leaf%3s", s));
+                ConsoleHelper.writeMessage(String.format("Entry%3s", s));
                 if (entry.availableToAddLeftChildren) {
                     entry.leftChild = child;
                     entry.availableToAddLeftChildren = false;
@@ -70,9 +65,11 @@ public class CustomTree extends AbstractList implements Cloneable, Serializable 
                 child.lineNumber = getLine();
                 ConsoleHelper.writeMessage(" in line: " + child.lineNumber);
                 tree.add(child);
+
                 return true;
             }
         }
+
         return false;
     }
 
@@ -142,10 +139,10 @@ public class CustomTree extends AbstractList implements Cloneable, Serializable 
             if (currentElement.elementName.equals(s))
                 return currentElement;
         }
+
         return null;
     }
 
-    // возвращает текущее количество элементов в дереве.
     @Override
     public int size() {
         return tree.size() - 1;
