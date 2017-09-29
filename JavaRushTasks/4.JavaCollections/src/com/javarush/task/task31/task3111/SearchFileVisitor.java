@@ -25,8 +25,9 @@ public class SearchFileVisitor extends SimpleFileVisitor<Path> {
                     (!partOfName.isEmpty()      && !file.getFileName().toString().contains(partOfName)) ||
                     (!partOfContent.isEmpty()   && !(new String(Files.readAllBytes(file)).contains(partOfContent))) ||
                     (minSize != -1              && !(attrs.size() >= minSize)) ||
-                    (maxSize != -1              && !(attrs.size() <= maxSize)))
-            return CONTINUE;
+                    (maxSize != -1              && !(attrs.size() <= maxSize))
+                    )
+                return CONTINUE;
 
             foundFiles.add(file);
         }
