@@ -68,13 +68,25 @@ public class View extends JFrame implements ActionListener {
         controller.exit();
     }
 
-    public void selectedTabChanged() {
-
-    }
-
     @Override
     public void actionPerformed(ActionEvent e) {
-
+        String s = e.getActionCommand();
+        switch (s) {
+            case "Новый" :
+                controller.createNewDocument();
+                break;
+            case "Открыть" :
+                controller.openDocument();
+            case "Сохранить" :
+                controller.saveDocument();
+            case "Сохранить как..." :
+                controller.saveDocumentAs();
+            case "Выход" :
+                controller.exit();
+            case "О программе" :
+                showAbout();
+            default:
+        }
     }
 
     public Controller getController() {
@@ -117,5 +129,36 @@ public class View extends JFrame implements ActionListener {
 
     public void resetUndo() {
         undoManager.discardAllEdits();
+    }
+
+    public boolean isHtmlTabSelected() {
+        return tabbedPane.getSelectedIndex() == 0;
+    }
+
+    public void selectHtmlTab() {
+        tabbedPane.setSelectedIndex(0);
+        resetUndo();
+    }
+
+    public void update() {
+        htmlTextPane.setDocument(controller.getDocument());
+    }
+
+    public void showAbout() {
+        JOptionPane.showMessageDialog(
+                getContentPane(),
+                "This should work anyway",
+                "All you ever wanted know",
+                JOptionPane.INFORMATION_MESSAGE
+        );
+    }
+
+    public void selectedTabChanged() {
+        int index = tabbedPane.getSelectedIndex();
+        if (index == 0)
+            controller.setPlainText(plainTextPane.getText());
+        else if (index == 1)
+            plainTextPane.setText(controller.getPlainText());
+        resetUndo();
     }
 }
