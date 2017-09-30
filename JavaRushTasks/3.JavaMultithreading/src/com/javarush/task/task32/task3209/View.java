@@ -1,27 +1,16 @@
 package com.javarush.task.task32.task3209;
 
 import com.javarush.task.task32.task3209.listeners.FrameListener;
+import com.javarush.task.task32.task3209.listeners.TabbedPaneChangeListener;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 /**
  * Created by Ben on 2017-09-29.
- 4.1. Объяви методы initMenuBar() и initEditor() в классе View. Они будут отвечать за инициализацию меню и панелей
-    редактора.
- 4.2. Объяви в представлении метод initGui(). Он будет инициализировать графический интерфейс.
-    Вызови из него инициализацию меню initMenuBar(), инициализацию редактора initEditor() и метод pack(),
-    реализацию которого мы унаследовали от класса JFrame.
- Разберись что делает метод pack().
- 4.3. Реализуй метод init() представления. Он должен:
- 4.3.1. Вызывать инициализацию графического интерфейса initGui().
- 4.3.2. Добавлять слушателя событий нашего окна. В качестве подписчика создай и используй объект класса FrameListener.
-    В качестве метода для добавления подписчика используй подходящий метод из класса Window от которого наследуется и
-    наш класс через классы JFrame и Frame.
- 4.3.3. Показывать наше окно. Используй метод setVisible с правильным параметром.
- На этом этапе приложение при запуске должно показывать окно, которое можно растягивать, разворачивать, закрыть и т.д.
- */
+*/
 public class View extends JFrame implements ActionListener {
     private Controller controller;
     private JTabbedPane tabbedPane = new JTabbedPane();
@@ -44,8 +33,14 @@ public class View extends JFrame implements ActionListener {
     public  void  initMenuBar() {
 
     }
-    public  void  initEditor() {
 
+    public  void  initEditor() {
+        htmlTextPane.setContentType("text/html");
+        tabbedPane.addTab("HTML", new JScrollPane(htmlTextPane));
+        tabbedPane.addTab("Текст", new JScrollPane(plainTextPane));
+        tabbedPane.setPreferredSize(new Dimension(100, 100));
+        tabbedPane.addChangeListener(new TabbedPaneChangeListener(this));
+        this.getContentPane().add(tabbedPane, BorderLayout.CENTER);
     }
 
     public void exit() {
