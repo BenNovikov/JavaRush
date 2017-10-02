@@ -20,6 +20,4 @@ public class Restaurant {
         Tablet tablet5 = new Tablet(5);
         tablet5.createOrder();
     }
-
-
 }
