@@ -6,7 +6,6 @@ package com.javarush.task.task30.task3010;
 
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.regex.Pattern;
 
 public class Solution {
     public static void main(String[] args) {
@@ -32,9 +31,11 @@ public class Solution {
         //Sorry, this solution brakes best practice guidelines but it's necessary because of insane task validation
         try {
             new BigDecimal(new BigInteger(s, radix));
+
             return true;
         } catch (Exception e) {
         }
+
         return false;
     }
 }
