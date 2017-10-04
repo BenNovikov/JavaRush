@@ -14,8 +14,16 @@ public class Order {
         this.dishes = ConsoleHelper.getAllDishesForOrder();
     }
 
-    private boolean isEmpty() {
+    public boolean isEmpty() {
         return dishes.isEmpty();
+    }
+
+    public int getTotalCookingTime() {
+        int sum = 0;
+        for (Dish d : dishes)
+            sum += d.getDuration();
+
+        return sum;
     }
 
     @Override

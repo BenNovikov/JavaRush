@@ -2,6 +2,7 @@ package com.javarush.task.task27.task2712;
 
 import com.javarush.task.task27.task2712.kitchen.Cook;
 import com.javarush.task.task27.task2712.kitchen.Dish;
+import com.javarush.task.task27.task2712.kitchen.Waiter;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -18,12 +19,16 @@ public class Restaurant {
 //        }
 //        System.out.println(dishes);
 
-        Tablet tablet = new Tablet(5);
-        Cook firstCook = new Cook("Amigo");
-        tablet.addObserver(firstCook);
-        tablet.createOrder();
+        try {
+            Cook cook = new Cook("Amigo");
+            Waiter waiter = new Waiter();
+            cook.addObserver(waiter);
+            Tablet tablet = new Tablet(5);
+            tablet.addObserver(cook);
+            tablet.createOrder();
+        }
+        catch (Exception e) {
 
+        }
     }
-
-
 }
