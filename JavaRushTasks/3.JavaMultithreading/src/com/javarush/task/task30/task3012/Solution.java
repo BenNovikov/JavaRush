@@ -36,14 +36,15 @@ public class Solution {
                     listIterator.set (0);
                     if (listIterator.hasNext ( ))
                         integerList.set (listIterator.nextIndex ( ), integerList.get (listIterator.nextIndex ( )) + 1);
-                    else listIterator.add (1);
+                    else
+                        listIterator.add (1);
                     break;
                 case 2:
                     listIterator.set (-1);
                     if (listIterator.hasNext ( ))
                         integerList.set (listIterator.nextIndex ( ), integerList.get (listIterator.nextIndex ( )) + 1);
-                    else listIterator.add (1);
-                    break;
+                    else
+                        listIterator.add (1);
             }
         }
 //        System.out.println (" +" + integerList);

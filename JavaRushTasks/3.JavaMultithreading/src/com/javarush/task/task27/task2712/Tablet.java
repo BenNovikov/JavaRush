@@ -1,12 +1,12 @@
 package com.javarush.task.task27.task2712;
 
-
 import com.javarush.task.task27.task2712.kitchen.Order;
+import java.util.Observable;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class Tablet {
+public class Tablet extends Observable {
     final int number;
     private static Logger logger = Logger.getLogger(Tablet.class.getName());
 
@@ -21,6 +21,9 @@ public class Tablet {
         } catch (Exception e) {
             logger.log(Level.SEVERE, "Console is unavailable.");
         }
+        ConsoleHelper.writeMessage(order.toString());
+        setChanged();
+        notifyObservers(order);
     }
 
     @Override
