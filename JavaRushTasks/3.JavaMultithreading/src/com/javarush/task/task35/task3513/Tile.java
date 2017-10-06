@@ -1,7 +1,8 @@
 package com.javarush.task.task35.task3513;
 
 import java.awt.*;
-
+import java.util.ArrayList;
+import java.util.List;
 
 public class Tile {
     int value;
@@ -82,4 +83,5 @@ public class Tile {
     public int getValue() {
         return value;
     }
+
 }
