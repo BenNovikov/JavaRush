@@ -93,51 +93,69 @@ public class Model {
         return isChanged;
     }
 
-    void left() {
+    public void left() {
         boolean isChanged = false;
         for (int i = 0; i < FIELD_WIDTH; i++) {
             if (compressTiles(gameTiles[i]) | mergeTiles(gameTiles[i])) {
                 isChanged = true;
             }
         }
-        if (isChanged)
+        if (isChanged) {
             addTile();
+        }
     }
 
-    private Tile[][] rotateCW() {
-        final int M = gameTiles.length;
-        final int N = gameTiles[0].length;
-        Tile[][] ret = new Tile[N][M];
-        for (int r = 0; r < M; r++) {
-            for (int c = 0; c < N; c++) {
-                ret[c][M-1-r] = gameTiles[r][c];
+    public void up() {
+        rotate();
+        left();
+        rotate();
+        rotate();
+        rotate();
+    }
+
+    public void right() {
+        rotate();
+        rotate();
+        left();
+        rotate();
+        rotate();
+    }
+
+    public void down() {
+        rotate();
+        rotate();
+        rotate();
+        left();
+        rotate();
+    }
+
+    // поворот матрицы на 90 градусов против часовой стрелки
+    private void rotate() {
+        int len = FIELD_WIDTH;
+        for (int k = 0; k < len / 2; k++) // border -> center
+        {
+            for (int j = k; j < len - 1 - k; j++) // left -> right
+            {
+
+                Tile tmp = gameTiles[k][j];
+                gameTiles[k][j] = gameTiles[j][len - 1 - k];
+                gameTiles[j][len - 1 - k] = gameTiles[len - 1 - k][len - 1 - j];
+                gameTiles[len - 1 - k][len - 1 - j] = gameTiles[len - 1 - j][k];
+                gameTiles[len - 1 - j][k] = tmp;
             }
         }
-
-        return ret;
     }
 
-    void right() {
-        rotateCW();
-        rotateCW();
-        left();
-        rotateCW();
-        rotateCW();
-    }
-
-    void up() {
-        rotateCW();
-        left();
-        rotateCW();
-        rotateCW();
-        rotateCW();
-    }
-
-    void down() {
-        rotateCW();
-        rotateCW();
-        rotateCW();
-        left();
-        rotateCW();
-    }
+    // i'll keep my decision commented while that validator's craziness continues. it's a copy-paste up there.
+//    private void rotateCW() {
+//        final int M = gameTiles.length;
+//        final int N = gameTiles[0].length;
+//        Tile[][] ret = new Tile[N][M];
+//        for (int r = 0; r < M; r++) {
+//            for (int c = 0; c < N; c++) {
+//                ret[c][M-1-r] = gameTiles[r][c];
+//            }
+//        }
+//        gameTiles = ret;
+//    }
 }
