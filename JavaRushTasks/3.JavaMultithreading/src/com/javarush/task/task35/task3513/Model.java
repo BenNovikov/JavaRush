@@ -103,4 +103,41 @@ public class Model {
         if (isChanged)
             addTile();
     }
+
+    private Tile[][] rotateCW() {
+        final int M = gameTiles.length;
+        final int N = gameTiles[0].length;
+        Tile[][] ret = new Tile[N][M];
+        for (int r = 0; r < M; r++) {
+            for (int c = 0; c < N; c++) {
+                ret[c][M-1-r] = gameTiles[r][c];
+            }
+        }
+
+        return ret;
+    }
+
+    void right() {
+        rotateCW();
+        rotateCW();
+        left();
+        rotateCW();
+        rotateCW();
+    }
+
+    void up() {
+        rotateCW();
+        left();
+        rotateCW();
+        rotateCW();
+        rotateCW();
+    }
+
+    void down() {
+        rotateCW();
+        rotateCW();
+        rotateCW();
+        left();
+        rotateCW();
+    }
 }
